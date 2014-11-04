@@ -10,8 +10,8 @@ within the html.
 ```purifier.purify(html, prefix, postfix, cb);```
 
 # Example
-	```js
+```js
 	var purifier = require('html5-purifier');
 	var html = 'hello<span>world</a>';
 	purifier.purify(html, 'abc-', 'abc', cb);
-	```
+```
