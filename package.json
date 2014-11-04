@@ -1,0 +1,38 @@
+{
+  "name": "html5-purifier",
+  "version": "0.1.0",
+  "description": "Purify unsafe HTML and CSS into standards compliant and namespaced code.",
+  "keywords": [
+    "html-purifier",
+    "html",
+    "css",
+    "style",
+    "purifier",
+    "namespacer"
+  ],
+  "author": "Mark Deepwell <me@markdeepwell.com>",
+  "contributors": [
+    {
+      "name": "Mark Deepwell",
+      "email": "me@markdeepwell.com"
+    },
+    {
+      "name": "Simon Ho",
+      "email": "simon@stage3systems.com"
+    }
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "async": "0.9.0",
+    "css": "2.1.0",
+    "google-caja": "0.0.2",
+    "underscore": "1.4.4"
+  },
+  "devDependencies": {
+    "expect.js": "0.3.1",
+    "istanbul": "~0.3.0",
+    "mocha": "~2.0.1",
+    "sinon": "~1.10.3"
+  },
+  "main": "lib/index.js"
+}

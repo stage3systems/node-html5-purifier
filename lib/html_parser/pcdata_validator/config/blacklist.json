@@ -1,0 +1,9 @@
+{
+  "blacklist": [
+    "<![if !supportlists]>",
+    "<![if !vml]>",
+    "<![if gte mso 9]>",
+    "<![if mso 9]>",
+    "<![endif]>"
+  ]
+}
