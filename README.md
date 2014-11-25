@@ -7,11 +7,12 @@ Cleans up any input into standards compliant DOM safe code, both CSS and HTML5.
 Can pass in prefix and postfix values for namespacing all elements, id's and classes
 within the html.
 
-```purifier.purify(html, prefix, postfix, cb);```
+```purifier.purify(html, options, cb);```
 
 # Example
 ```js
 	var purifier = require('html5-purifier');
 	var html = 'hello<span>world</a>';
-	purifier.purify(html, 'abc-', 'abc', cb);
+	var options = { prefix: 'abc-', postfix: 'abc' };
+	purifier.purify(html, options, cb);
 ```
