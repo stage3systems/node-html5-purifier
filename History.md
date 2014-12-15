@@ -1,4 +1,4 @@
-Next
+v0.2.1 / 2014-12-15
 ===================
 
   * Fixed 'RangeError: Maximum call stack size exceeded' exception when parsing
