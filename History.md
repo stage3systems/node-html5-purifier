@@ -1,3 +1,8 @@
+v0.2.2 / 2015-03-12
+===================
+
+  * Improved whitelist to include common HTML attributes: height, valign, and width
+
 v0.2.1 / 2014-12-15
 ===================
 
