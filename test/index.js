@@ -47,6 +47,24 @@ describe('library - html purifier', function() {
       done();
     });
   });
+
+  it('should not strip newlines from the html body', function(done) {
+    var options = { prefix: 'abc', postfix: 'ugc' };
+    var text = "<br><font size=2 face='sans-serif'>You are kindly requested to amend your\n" +
+      "Address book and/or bookmarks and start using the following new email addresses\r\n" +
+      "with immediate effect</font>\r" +
+      "<br>";
+
+    purify(text, options, function(err, res) {
+      expect(res).to.equal(
+        '<br class="ugc"><font size="2" face="sans-serif" class="ugc">'+
+        'You are kindly requested to amend your\nAddress book and/or'+
+        ' bookmarks and start using the following new email'+
+        ' addresses\r\nwith immediate effect</font>\r<br class="ugc">'
+      );
+      done();
+    });
+  })
 });
 
 /**
