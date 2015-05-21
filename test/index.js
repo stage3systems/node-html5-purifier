@@ -39,9 +39,9 @@ describe('library - html purifier', function() {
     var options = { prefix: 'abc', postfix: 'ugc' };
     var text = '@media only screen {div{display:block}\n';
     text = repeat(text, 100);
-    text = '<style type="text/css">\n' + text + '</style>\n';
+    text = '<style type="text/css">' + text + '</style>';
     text = repeat(text, 200);
-    text = '<style type="text/css">\nbody {padding: 0}\n</style>\n' + text; // something valid in this mess
+    text = '<style type="text/css">\nbody {padding: 0}</style>' + text; // something valid in this mess
     purify(text, options, function(err, res) {
       expect(res).to.equal('<style>body.ugc {\n  padding: 0;\n}</style>');
       done();
