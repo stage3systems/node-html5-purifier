@@ -39,14 +39,32 @@ describe('library - html purifier', function() {
     var options = { prefix: 'abc', postfix: 'ugc' };
     var text = '@media only screen {div{display:block}\n';
     text = repeat(text, 100);
-    text = '<style type="text/css">\n' + text + '</style>\n';
+    text = '<style type="text/css">' + text + '</style>';
     text = repeat(text, 200);
-    text = '<style type="text/css">\nbody {padding: 0}\n</style>\n' + text; // something valid in this mess
+    text = '<style type="text/css">\nbody {padding: 0}</style>' + text; // something valid in this mess
     purify(text, options, function(err, res) {
       expect(res).to.equal('<style>body.ugc {\n  padding: 0;\n}</style>');
       done();
     });
   });
+
+  it('should not strip newlines from the html body', function(done) {
+    var options = { prefix: 'abc', postfix: 'ugc' };
+    var text = "<br><font size=2 face='sans-serif'>You are kindly requested to amend your\n" +
+      "Address book and/or bookmarks and start using the following new email addresses\r\n" +
+      "with immediate effect</font>\r" +
+      "<br>";
+
+    purify(text, options, function(err, res) {
+      expect(res).to.equal(
+        '<br class="ugc"><font size="2" face="sans-serif" class="ugc">'+
+        'You are kindly requested to amend your\nAddress book and/or'+
+        ' bookmarks and start using the following new email'+
+        ' addresses\r\nwith immediate effect</font>\r<br class="ugc">'
+      );
+      done();
+    });
+  })
 });
 
 /**
