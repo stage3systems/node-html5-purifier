@@ -54,5 +54,27 @@ describe('library - html purifier - style parser - filterer', function() {
         done();
       });
     });
+
+    it('should remove html comments', function(done) {
+      var dirty = '<!-- p { border:none; } -->';
+      var clean = 'p {\n  border: none;\n}';
+
+      filterer.filter(dirty, function(err, sanitized) {
+        expect(err).to.be.equal(null);
+        expect(sanitized).to.be.equal(clean);
+        done();
+      });
+    });
+
+    it('should remove multiple html comments', function(done) {
+      var dirty = '<!-- hr { width: 10%; } --> <!-- p { border:none; } -->';
+      var clean = 'hr {\n  width: 10%;\n}\n\np {\n  border: none;\n}';
+
+      filterer.filter(dirty, function(err, sanitized) {
+        expect(err).to.be.equal(null);
+        expect(sanitized).to.be.equal(clean);
+        done();
+      });
+    });
   });
 });
