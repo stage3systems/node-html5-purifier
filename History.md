@@ -1,8 +1,13 @@
+v0.2.5 / 2015-07-22
+===================
+
+  * Removing HTML comment start and end tags in <style> blocks
+
 v0.2.3 / 2015-05-22
 ===================
 
   * Removed code that was taking line endings out of email body
-  
+
 v0.2.2 / 2015-03-12
 ===================
 
