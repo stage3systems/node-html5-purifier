@@ -1,5 +1,7 @@
 # node-html5-purifier
 
+[![Code Climate](https://codeclimate.com/github/stage3systems/node-html5-purifier/badges/gpa.svg)](https://codeclimate.com/github/stage3systems/node-html5-purifier)
+
 Purify dirty HTML and CSS into standards compliant and namespaced code.
 
 Cleans up any input into standards compliant DOM safe code, both CSS and HTML5.
