@@ -84,7 +84,7 @@ describe('lib - html purifier - style parser - namespacer - prefixer', function(
       });
     });
 
-    it.skip('should prefix multiple', function(done) {
+    it('should prefix multiple', function(done) {
       var dirty = '#link ,#link2 #link3 #link4 #link5, p#test {margin-top:0;}';
       var clean = '#ugc-link ,#ugc-link2 #ugc-link3 #ugc-link4 #ugc-link5, p#ugc-test {margin-top:0;}';
 

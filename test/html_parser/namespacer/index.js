@@ -92,13 +92,4 @@ describe('library - html purifier - html parser - namespacer', function() {
     });
   });
 
-  it.skip('should output namespaced.html from attribute_validated.html', function(done) {
-    var dirty = fs.readFileSync(FIXTURES_DIR + 'html_purifier/html_parser/namespacer/attribute_validated.html', 'utf-8');
-
-    namespacer.namespace(dirty, 'ugc-', 'ugc', function(err, namespaced) {
-      fs.writeFileSync(FIXTURES_DIR + 'html_purifier/html_parser/namespacer/namespaced.html', namespaced);
-      done();
-    });
-  });
-
 });
