@@ -28,6 +28,14 @@ describe('library - html purifier', function() {
     });
   });
 
+  it('should handle undefined input', function(done) {
+    var options = { prefix: 'abc', postfix: 'ugc' };
+    purify(undefined, options, function(err, res) {
+      expect(res).to.equal('');
+      done();
+    });
+  });
+
   /**
    * No joke, an actual html page found in the wild had 20,000 nested css selectors.
    * A large block of improperly nested selectors repeated hundred's of times.
