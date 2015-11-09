@@ -72,7 +72,17 @@ describe('library - html purifier', function() {
       );
       done();
     });
-  })
+  });
+
+  it('should preserve data attribute', function(done) {
+    var options = { prefix: 'abc', postfix: 'ugc' };
+    purify('<a data-attachment-id="178">File link</a>', options, function(err, res) {
+      expect(res).to.contain('data-attachment-id');
+      expect(res).to.equal('<a data-attachment-id="178" class="ugc">File link</a>');
+      done();
+    });
+  });
+
 });
 
 /**
