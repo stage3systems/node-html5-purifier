@@ -1,3 +1,9 @@
+v0.3.0 / 2015-11-09
+===================
+
+  * Upgrade google-caja to a newer library
+  * From Google Caja compiled Sat May 04 18:26:48 CDT 2013 to Thu Sep 12 11:58:02 CDT 2013
+
 v0.2.6 / 2015-10-19
 ===================
 
