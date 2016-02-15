@@ -87,6 +87,15 @@ describe('library - html purifier', function() {
     });
   });
 
+  it('should preserve cid attribute', function(done) {
+    var options = { prefix: 'abc', postfix: 'ugc' };
+    purify('<a data-attachment-id="178" data-cid="12345">File link</a>', options, function(err, res) {
+      expect(res).to.contain('data-cid');
+      expect(res).to.equal('<a data-attachment-id="178" data-cid="12345" class="ugc">File link</a>');
+      done();
+    });
+  });
+
 });
 
 /**
