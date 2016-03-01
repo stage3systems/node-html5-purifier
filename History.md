@@ -1,7 +1,8 @@
-vNEXT
+v0.4.0 / 2016-03-01
 ===================
 
   * Remove required parameters `prefix` and `postfix` to support HTML and CSS purifying
+  * Preserve data-cid attribute
 
 v0.3.0 / 2015-11-09
 ===================
