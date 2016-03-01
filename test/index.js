@@ -12,18 +12,22 @@ describe('library - html purifier', function() {
     expect(hasPurifyFunction).to.be.ok();
   });
 
-  it('should require prefix', function(done) {
-    var options = { postfix: 'abc' };
-    purify('', options, function(err) {
-      expect(err).to.be.an(Error);
+  it('should support prefix and postfix', function(done) {
+    var options = { prefix: 'xyz', postfix: 'abc' };
+    var input = '<span class="hello">testing</span>';
+    purify(input, options, function(err, res) {
+      expect(err).to.not.be.an(Error);
+      expect(res).to.equal('<span class="abc xyzhello">testing</span>');
       done();
     });
   });
 
-  it('should require postfix', function(done) {
-    var options = { prefix: 'abc' };
-    purify('', options, function(err) {
-      expect(err).to.be.an(Error);
+  it('should not require any options', function(done) {
+    var options = {};
+    var input = '<span class="hello">testing</span>';
+    purify(input, options, function(err, res) {
+      expect(err).to.not.be.an(Error);
+      expect(res).to.equal(input);
       done();
     });
   });

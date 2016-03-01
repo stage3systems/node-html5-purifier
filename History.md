@@ -1,3 +1,8 @@
+vNEXT
+===================
+
+  * Remove required parameters `prefix` and `postfix` to support HTML and CSS purifying
+
 v0.3.0 / 2015-11-09
 ===================
 
