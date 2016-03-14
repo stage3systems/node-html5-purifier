@@ -64,4 +64,13 @@ describe('library - html purifier - html parser - sanitizer - sanitizer', functi
     });
   });
 
+  it('should keep img src', function(done) {
+    var dirty = '<div dir="ltr"><img src="cid:ii_ilo0sxul0_15366e0cac25aa09" width="486" height="365"><br><br></div>';
+    sanitizer.sanitize(dirty, function(err, sanitized) {
+      expect(err).to.be.equal(null);
+      expect(sanitized).to.be.equal('<div dir="ltr"><img src="cid:ii_ilo0sxul0_15366e0cac25aa09" width="486" height="365"><br><br></div>');
+      done();
+    });
+  });
+
 });

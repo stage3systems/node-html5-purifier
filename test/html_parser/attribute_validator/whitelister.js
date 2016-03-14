@@ -63,6 +63,11 @@ describe('library - html purifier - attribute validator - whitelister', function
       var result = whitelister.verify('size');
       expect(result).to.be.ok();
     });
+
+    it('should allow `src`', function() {
+      var result = whitelister.verify('src');
+      expect(result).to.be.ok();
+    });
   });
 
 });
