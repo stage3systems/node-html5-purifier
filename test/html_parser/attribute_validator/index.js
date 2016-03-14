@@ -70,6 +70,15 @@ describe('library - html purifier - html parser - attribute validator - validato
         done();
       });
     });
+
+    it('should keep img src', function(done) {
+      var dirty = '<div dir="ltr"><img src="cid:ii_ilo0sxul0_15366e0cac25aa09" width="486" height="365"><br><br></div>';
+      validator.validate(dirty, function(err, validated) {
+        expect(err).to.be.equal(null);
+        expect(validated).to.be.equal('<div><img src="cid:ii_ilo0sxul0_15366e0cac25aa09" width="486" height="365"><br><br></div>');
+        done();
+      });
+    });
   });
 
 });
