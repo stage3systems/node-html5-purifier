@@ -1,3 +1,8 @@
+v0.5.0 / 2016-03-01
+===================
+
+  * Update google-caja library to use stage3 fork that allows cid in img src sanitization 
+
 v0.4.0 / 2016-03-01
 ===================
 
