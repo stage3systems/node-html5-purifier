@@ -10,4 +10,8 @@ describe('lib - html purifier - style parser - namespacer', function() {
     expect(hasNamespaceFunction).to.be.ok();
   });
 
+  it('should contain the stripNamespace function', function() {
+    var hasNamespaceFunction = (typeof(namespacer.stripNamespace) !== 'undefined');
+    expect(hasNamespaceFunction).to.be.ok();
+  });
 });

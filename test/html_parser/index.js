@@ -10,4 +10,9 @@ describe('library - html purifier - html parser', function() {
     expect(hasParseFunction).to.be.ok();
   });
 
+  it('should contain the parsePurified function', function() {
+    var hasParsePurifiedFunction = (typeof(parser.parsePurified) !== 'undefined');
+    expect(hasParsePurifiedFunction).to.be.ok();
+  });
+
 });
