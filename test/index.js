@@ -48,6 +48,7 @@ describe('library - html purifier', function() {
    * 'css' module that uses recursion when css tags are nested.
    */
   it('should discard nested selectors', function(done) {
+    this.timeout(5000);
     var options = { prefix: 'abc', postfix: 'ugc' };
     var text = '@media only screen {div{display:block}\n';
     text = repeat(text, 100);

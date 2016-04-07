@@ -1,7 +1,12 @@
-v0.5.0 / 2016-03-01
+v0.x.0 / 2016-00-00
 ===================
 
-  * Update google-caja library to use stage3 fork that allows cid in img src sanitization 
+  * Update deps: async, css, underscore, istanbul, mocha, sinon
+
+v0.5.0 / 2016-03-14
+===================
+
+  * Update google-caja library to use stage3 fork that allows cid in img src sanitization
 
 v0.4.0 / 2016-03-01
 ===================

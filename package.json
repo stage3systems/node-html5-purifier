@@ -27,16 +27,16 @@
     "url": "https://github.com/stage3systems/node-html5-purifier.git"
   },
   "dependencies": {
-    "async": "0.9.0",
-    "css": "2.1.0",
+    "async": "1.5.2",
+    "css": "2.2.1",
     "google-caja-sanitizer": "git+ssh://git@github.com:stage3systems/google-caja-sanitizer#v1.1.0",
-    "underscore": "1.4.4"
+    "underscore": "1.8.3"
   },
   "devDependencies": {
     "expect.js": "0.3.1",
-    "istanbul": "~0.3.0",
-    "mocha": "~2.0.1",
-    "sinon": "~1.10.3"
+    "istanbul": "0.4.3",
+    "mocha": "2.4.5",
+    "sinon": "1.17.3"
   },
   "main": "lib/index.js"
 }
