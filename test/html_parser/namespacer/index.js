@@ -108,80 +108,70 @@ describe('library - html purifier - html parser - namespacer', function() {
       });
 
     });
+  });
 
-    describe('stripNamespace()', function() {
-      describe('The prefix class should be removed from every tag in the email body', function() {
-        var POSTFIX = 'ugc';
-        var PREFIX = 'ugc-';
+  describe('stripNamespace()', function() {
+    describe('The prefix class should be removed from every tag in the email body', function() {
+      var POSTFIX = 'ugc';
+      var PREFIX = 'ugc-';
 
-        it('should not remove anything when prefix or postfix doesn\'t exist', function(done) {
-          var dirty = '<span class="test">Hello</span>';
-          var expected = '<span class="test">Hello</span>';
+      it('should not remove anything when prefix or postfix doesn\'t exist', function(done) {
+        var dirty = '<span class="test">Hello</span>';
+        var expected = '<span class="test">Hello</span>';
 
-          namespacer.stripNamespace(dirty, PREFIX, POSTFIX, function(err, namespaced) {
-            expect(namespaced).to.be.equal(expected);
-            done();
-          });
+        namespacer.stripNamespace(dirty, PREFIX, POSTFIX, function(err, namespaced) {
+          expect(namespaced).to.be.equal(expected);
+          done();
         });
+      });
 
-        it('should remove the prefix from one existing class', function(done) {
-          var dirty = '<span class="' + PREFIX + 'test">Hello</span>';
-          var expected = '<span class="test">Hello</span>';
+      it('should remove the prefix from one existing class', function(done) {
+        var dirty = '<span class="' + POSTFIX + ' ' + PREFIX + 'test">Hello</span>';
+        var expected = '<span class="test">Hello</span>';
 
-          namespacer.stripNamespace(dirty, PREFIX, POSTFIX, function(err, namespaced) {
-            expect(namespaced).to.be.equal(expected);
-            done();
-          });
+        namespacer.stripNamespace(dirty, PREFIX, POSTFIX, function(err, namespaced) {
+          expect(namespaced).to.be.equal(expected);
+          done();
         });
+      });
 
-        it('should remove the prefix from all tags', function(done) {
-          var dirty = '<div class="' + PREFIX + 'test">Hello</span>';
-          var expected = '<div class="test">Hello</span>';
+      it('should remove the prefix from all tags', function(done) {
+        var dirty = '<div class="' + POSTFIX + PREFIX + 'test">Hello</span>';
+        var expected = '<div class="test">Hello</span>';
 
-          namespacer.stripNamespace(dirty, PREFIX, POSTFIX, function(err, namespaced) {
-            expect(namespaced).to.be.equal(expected);
-            done();
-          });
+        namespacer.stripNamespace(dirty, PREFIX, POSTFIX, function(err, namespaced) {
+          expect(namespaced).to.be.equal(expected);
+          done();
         });
+      });
 
-        it('should remove the prefix from multiple places', function(done) {
-          var dirty = '<span class="ugc-first ugc-second-class">my string</span>';
-          var expected = '<span class="first second-class">my string</span>';
+      it('should remove the prefix from multiple places', function(done) {
+        var dirty = '<span class="' + POSTFIX + ' ' + PREFIX + 'first ' + PREFIX + 'second-class">my string</span>';
+        var expected = '<span class="first second-class">my string</span>';
 
-          namespacer.stripNamespace(dirty, PREFIX, POSTFIX, function(err, namespaced) {
-            expect(namespaced).to.be.equal(expected);
-            done();
-          });
+        namespacer.stripNamespace(dirty, PREFIX, POSTFIX, function(err, namespaced) {
+          expect(namespaced).to.be.equal(expected);
+          done();
         });
+      });
 
-        it('should remove the prefix from id', function(done) {
-          var dirty = '<span id="ugc-first ugc-second-class">my string</span>';
-          var expected = '<span id="first second-class">my string</span>';
+      it('should remove the prefix from id', function(done) {
+        var dirty = '<span id="' + PREFIX + 'testing" class="' + POSTFIX + '">my string</span><p class="' + POSTFIX + '">text<a href="http://www.google.ca" id="' + PREFIX + 'nowhere" class="' + POSTFIX + '">link</a></p>';
+        var expected = '<span id="testing" class="">my string</span><p class="">text<a href="http://www.google.ca" id="nowhere" class="">link</a></p>';
 
-          namespacer.stripNamespace(dirty, PREFIX, POSTFIX, function(err, namespaced) {
-            expect(namespaced).to.be.equal(expected);
-            done();
-          });
+        namespacer.stripNamespace(dirty, PREFIX, POSTFIX, function(err, namespaced) {
+          expect(namespaced).to.be.equal(expected);
+          done();
         });
+      });
 
-        it('should remove postfix from class', function(done) {
-          var dirty = '<span class="banner ugc">my string</span>';
-          var expected = '<span class="banner">my string</span>';
+      it('should remove postfix from class', function(done) {
+        var dirty = '<span class="banner ugc">my string</span>';
+        var expected = '<span class="banner">my string</span>';
 
-          namespacer.stripNamespace(dirty, PREFIX, POSTFIX, function(err, namespaced) {
-            expect(namespaced).to.be.equal(expected);
-            done();
-          });
-        });
-
-        it('should remove both prefix and postfix', function(done) {
-          var dirty = '<span class="ugc-ugc-banner ugc-ugc ugc">my string</span>';
-          var expected = '<span class="banner">my string</span>';
-
-          namespacer.stripNamespace(dirty, PREFIX, POSTFIX, function(err, namespaced) {
-            expect(namespaced).to.be.equal(expected);
-            done();
-          });
+        namespacer.stripNamespace(dirty, PREFIX, POSTFIX, function(err, namespaced) {
+          expect(namespaced).to.be.equal(expected);
+          done();
         });
       });
     });
