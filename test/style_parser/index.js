@@ -19,7 +19,7 @@ describe('library - html purifier - style parser', function() {
     var PREFIX = 'ugc-';
     var POSTFIX = '.ugc';
     it('should remove prefix from multiple tags', function(done) {
-      var expected = '#link, #link2 #link3 #link4 #link5, p#test { margin-top:0; }';
+      var expected = '<style>#link, #link2 #link3 #link4 #link5, p#test { margin-top:0; }</style>';
       var clean = "<style>" +
         "#ugc-link, #ugc-link2 #ugc-link3 #ugc-link4 #ugc-link5, p#ugc-test { margin-top:0; }" +
         "</style>";
@@ -31,7 +31,7 @@ describe('library - html purifier - style parser', function() {
     });
 
     it('should remove the prefix from multiple tags', function(done) {
-      var expected = '.first.second.third { margin-top:0; }';
+      var expected = '<style>.first.second.third { margin-top:0; }</style>';
       var clean = '<style>.ugc-first.ugc-second.ugc-third {margin-top:0;}</style>';
 
       styleParser.parsePurified(clean, PREFIX, POSTFIX, function(err, stripped) {
@@ -41,7 +41,7 @@ describe('library - html purifier - style parser', function() {
     });
 
     it('should remove the prefix from multiple class blocks', function(done) {
-      var expected = 'p.orig, div.test .link { margin-top:0; }';
+      var expected = '<style>p.orig, div.test .link { margin-top:0; }</style>';
       var clean = '<style>p.ugc-orig, div.ugc-test .ugc-link {margin-top:0;}</style>';
 
       styleParser.parsePurified(clean, PREFIX, POSTFIX, function(err, stripped) {
@@ -51,7 +51,7 @@ describe('library - html purifier - style parser', function() {
     });
 
     it('should remove prefix from multiple tags', function(done) {
-      var expected = '#link, #link2 #link3 #link4 #link5, p#test { margin-top:0; }';
+      var expected = '<style>#link, #link2 #link3 #link4 #link5, p#test { margin-top:0; }</style>';
       var clean = '<style>#ugc-link, #ugc-link2 #ugc-link3 #ugc-link4 #ugc-link5, p#ugc-test { margin-top:0; }</style>';
 
       styleParser.parsePurified(clean, PREFIX, POSTFIX, function(err, stripped) {

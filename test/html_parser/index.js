@@ -30,5 +30,28 @@ describe('library - html purifier - html parser - parsePurified', function() {
       done();
     });
   });
+  it('should handle the case when ugc appears in text part of html', function(done) {
+    var POSTFIX = 'ugc';
+    var PREFIX = 'ugc-';
+    var dirty = '<span class="ugc ugc-ugc ugc-ugc-moz-cite-prefix ugc-test ugc">my string has ugc</span>';
+    var expected = '<span class="moz-cite-prefix test">my string has ugc</span>';
+
+    parser.parsePurified(dirty, PREFIX, POSTFIX, function(err, namespaced) {
+      expect(namespaced).to.be.equal(expected);
+      done();
+    });
+  });
+
+  it('should remove empty class', function(done) {
+    var POSTFIX = 'ugc';
+    var PREFIX = 'ugc-';
+    var dirty = '<span class="ugc ugc-ugc ugc-ugc ugc ugc">my string has ugc</span>';
+    var expected = '<span>my string has ugc</span>';
+
+    parser.parsePurified(dirty, PREFIX, POSTFIX, function(err, namespaced) {
+      expect(namespaced).to.be.equal(expected);
+      done();
+    });
+  });
 
 });
