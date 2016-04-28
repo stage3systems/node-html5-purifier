@@ -1,7 +1,8 @@
-v0.x.0 / 2016-00-00
+v0.5.1 / 2016-04-28
 ===================
 
-  * Update deps: async, css, underscore, istanbul, mocha, sinon
+  * Updated async dep: Required as previous version would not return callback in a rare case
+  * Update deps: css, underscore, istanbul, mocha, sinon
 
 v0.5.0 / 2016-03-14
 ===================
