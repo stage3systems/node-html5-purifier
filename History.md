@@ -1,4 +1,4 @@
-v0.6.0 / 2016-x
+v0.6.0 / 2016-05-05
 ===================
 
   * Stability: Change default behaviour when we encounter invalid CSS declarations. Instead of
