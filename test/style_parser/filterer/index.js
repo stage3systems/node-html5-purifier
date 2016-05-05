@@ -76,5 +76,17 @@ describe('library - html purifier - style parser - filterer', function() {
         done();
       });
     });
+
+    it('should strip invalid css', function(done) {
+      // ideally we should remove the invalid css and keep the valid css
+      var dirty = '@media screen { a { font-size: 16px; !important; } p { font-size: 12px !important; } }';
+      var clean = '';
+
+      filterer.filter(dirty, function(err, sanitized) {
+        expect(err).to.be.equal(null);
+        expect(sanitized).to.be.equal(clean);
+        done();
+      });
+    });
   });
 });

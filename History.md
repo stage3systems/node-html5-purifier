@@ -1,3 +1,9 @@
+v0.6.0 / 2016-x
+===================
+
+  * Stability: Change default behaviour when we encounter invalid CSS declarations. Instead of
+    failing with a Type error, we now remove all the related css
+
 v0.5.1 / 2016-04-28
 ===================
 
