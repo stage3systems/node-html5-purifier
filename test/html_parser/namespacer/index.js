@@ -108,6 +108,7 @@ describe('library - html purifier - html parser - namespacer', function() {
       });
 
     });
+
   });
 
   describe('stripNamespace()', function() {
@@ -174,6 +175,19 @@ describe('library - html purifier - html parser - namespacer', function() {
           done();
         });
       });
+
+      it('should remove extra whitespace between class names', function(done) {
+        var POSTFIX = '';
+        var PREFIX = '';
+        var dirty = '<span class="pink   blue">headline</span>';
+        var expected = '<span class="pink blue">headline</span>';
+
+        namespacer.stripNamespace(dirty, PREFIX, POSTFIX, function(err, purified) {
+          expect(purified).to.be.equal(expected);
+          done();
+        });
+      });
+
     });
   });
 
