@@ -1,3 +1,8 @@
+vNEXT
+===================
+
+  * Fixed adding extra namespace classes when a classname had extra spaces in it
+
 v0.6.0 / 2016-05-05
 ===================
 

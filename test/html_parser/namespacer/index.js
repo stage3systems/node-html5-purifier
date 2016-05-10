@@ -90,6 +90,19 @@ describe('library - html purifier - html parser - namespacer', function() {
         });
       });
     });
+
+    it('should remove extra whitespace between class names', function(done) {
+      var POSTFIX = '';
+      var PREFIX = '';
+      var dirty = '<span class="pink   blue">headline</span>';
+      var expected = '<span class="pink blue">headline</span>';
+
+      namespacer.namespace(dirty, PREFIX, POSTFIX, function(err, purified) {
+        expect(purified).to.be.equal(expected);
+        done();
+      });
+    });
+
   });
 
 });
