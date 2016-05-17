@@ -152,6 +152,20 @@ describe('lib - html purifier - style parser - namespacer - prefixer', function(
         done();
       });
     });
+
+    it('should return formatted multi-line styles', function(done) {
+      var clean = 'P.ugc-p5 {\n';
+      clean += 'margin-left: 1px;\n';
+      clean += 'margin-right: 1px;\n';
+      clean += '}\n';
+      var expected = 'P.p5 { margin-left:1px; \nmargin-right:1px; }';
+
+      prefixer.strip(clean, PREFIX, function(err, stripped) {
+        expect(stripped).to.equal(expected);
+        done();
+      });
+    });
+
   });
 
 });

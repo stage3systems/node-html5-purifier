@@ -81,6 +81,20 @@ describe('lib - html purifier - style parser - namespacer - postfixer', function
         done();
       });
     });
+
+    it('should return formatted multi-line styles', function(done) {
+      var clean = 'P.ugc {\n';
+      clean += 'margin-left: 1px;\n';
+      clean += 'margin-right: 1px;\n';
+      clean += '}\n';
+      var expected = 'P { margin-left:1px; \nmargin-right:1px; }';
+
+      postfixer.strip(clean, POSTFIX, function(err, stripped) {
+        expect(stripped).to.equal(expected);
+        done();
+      });
+    });
+
   });
 
 });
