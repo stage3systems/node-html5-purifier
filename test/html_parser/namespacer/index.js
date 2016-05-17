@@ -188,6 +188,18 @@ describe('library - html purifier - html parser - namespacer', function() {
         });
       });
 
+      it('should not remove the class string', function(done) {
+        var POSTFIX = '';
+        var PREFIX = '';
+        var dirty = 'this is a very odd text string class = "" <b class=""></b>';
+        var expected = 'this is a very odd text string class = "" <b></b>';
+
+        namespacer.stripNamespace(dirty, PREFIX, POSTFIX, function(err, purified) {
+          expect(purified).to.be.equal(expected);
+          done();
+        });
+      });
+
     });
   });
 

@@ -59,5 +59,14 @@ describe('library - html purifier - style parser', function() {
         done();
       });
     });
+
+    it('should support multiple style tags', function(done) {
+      var html = '<style>P.ugc-p5 { margin-left: 1in; }</style><style>P.ugc-p6 { margin-left: 1in; }</style>';
+      styleParser.parsePurified(html, PREFIX, POSTFIX, function(err, res) {
+        expect(res).to.equal('<style>P.p5 { margin-left: 1in; }</style><style>P.p6 { margin-left: 1in; }</style>');
+        done();
+      });
+    });
+
   });
 });
