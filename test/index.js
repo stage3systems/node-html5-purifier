@@ -119,7 +119,7 @@ describe('library - html purifier', function() {
       var input = '<style>#xyz-link, #xyz-link2 #xyz-link3 #xyz-link4 #xyz-link5, p#xyz-test .abc{ margin-top:0; }</style><span class="abc xyz-hello">testing</span>';
       revert(input, options, function(err, res) {
         expect(err).to.not.be.an(Error);
-        expect(res).to.equal('<style>#link, #link2 #link3 #link4 #link5, p#test { margin-top:0; }</style><span class="hello">testing</span>');
+        expect(res).to.equal('<style>#link, #link2 #link3 #link4 #link5, p#test { margin-top: 0; }</style><span class="hello">testing</span>');
         done();
       });
     });

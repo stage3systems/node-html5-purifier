@@ -104,8 +104,8 @@ describe('lib - html purifier - style parser - namespacer - prefixer', function(
     var PREFIX = 'ugc-';
 
     it('should remove the prefix to just a class', function(done) {
-      var clean = '.ugc-link { margin-top:0; }';
-      var expected = '.link { margin-top:0; }';
+      var clean = '.ugc-link { margin-top: 0; }';
+      var expected = '.link { margin-top: 0; }';
 
       prefixer.strip(clean, PREFIX, function(err, stripped) {
         expect(stripped).to.equal(expected);
@@ -114,8 +114,8 @@ describe('lib - html purifier - style parser - namespacer - prefixer', function(
     });
 
     it('should remove the prefix from a tag and class', function(done) {
-      var clean = 'p.ugc-orig { margin-top:0; }';
-      var expected = 'p.orig { margin-top:0; }';
+      var clean = 'p.ugc-orig { margin-top: 0; }';
+      var expected = 'p.orig { margin-top: 0; }';
 
       prefixer.strip(clean, PREFIX, function(err, stripped) {
         expect(stripped).to.equal(expected);
@@ -124,8 +124,8 @@ describe('lib - html purifier - style parser - namespacer - prefixer', function(
     });
 
     it('should remove the prefix from an id', function(done) {
-      var expected = '#orig { margin-top:0; }';
-      var clean = '#ugc-orig { margin-top:0; }';
+      var expected = '#orig { margin-top: 0; }';
+      var clean = '#ugc-orig { margin-top: 0; }';
 
       prefixer.strip(clean, PREFIX, function(err, stripped) {
         expect(stripped).to.equal(expected);
@@ -134,8 +134,8 @@ describe('lib - html purifier - style parser - namespacer - prefixer', function(
     });
 
     it('should remove the prefix from id with tag', function(done) {
-      var expected = 'p#orig { margin-top:0; }';
-      var clean = 'p#ugc-orig { margin-top:0; }';
+      var expected = 'p#orig { margin-top: 0; }';
+      var clean = 'p#ugc-orig { margin-top: 0; }';
 
       prefixer.strip(clean, PREFIX, function(err, stripped) {
         expect(stripped).to.equal(expected);
@@ -144,8 +144,8 @@ describe('lib - html purifier - style parser - namespacer - prefixer', function(
     });
 
     it('should treat id that is a valid tag name as an id name', function(done) {
-      var expected = '#div { margin-top:0; }';
-      var clean = '#ugc-div { margin-top:0; }';
+      var expected = '#div { margin-top: 0; }';
+      var clean = '#ugc-div { margin-top: 0; }';
 
       prefixer.strip(clean, PREFIX, function(err, stripped) {
         expect(stripped).to.equal(expected);
@@ -158,7 +158,7 @@ describe('lib - html purifier - style parser - namespacer - prefixer', function(
       clean += 'margin-left: 1px;\n';
       clean += 'margin-right: 1px;\n';
       clean += '}\n';
-      var expected = 'P.p5 { margin-left:1px; \nmargin-right:1px; }';
+      var expected = 'P.p5 { margin-left: 1px; \nmargin-right: 1px; }';
 
       prefixer.strip(clean, PREFIX, function(err, stripped) {
         expect(stripped).to.equal(expected);
