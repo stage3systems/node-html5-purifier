@@ -59,7 +59,7 @@ describe('library - html purifier - html parser - parsePurified', function() {
     var PREFIX = 'ugc-';
     var clean = '<p class="ugc ugc-ugc ugc-ugc-moz-cite-prefix ugc-ugc-ugc-ugc-ugc-MsoNormal">Text</p>';
 
-      var expected = '<p class="moz-cite-prefix MsoNormal>Text</p>';
+      var expected = '<p class="moz-cite-prefix MsoNormal">Text</p>';
 
       parser.parsePurified(clean, PREFIX, POSTFIX, function(err, stripped) {
         expect(stripped).to.equal(expected);
