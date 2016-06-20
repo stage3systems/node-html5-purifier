@@ -1,7 +1,8 @@
-vNEXT
+v0.7.0 / 2016-06-20
 ===================
 
   * Fixed adding extra namespace classes when a classname had extra spaces in it
+  * Revert namespace to be called before sending mail
 
 v0.6.0 / 2016-05-05
 ===================
