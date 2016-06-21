@@ -178,6 +178,18 @@ describe('library - html purifier', function() {
       });
     });
 
+    it('should parse style correctly', function(done) {
+      var options = { prefix: 'ugc-', postfix: 'ugc' };
+
+      var clean = '<style>.ugc-ugc-ugc-ugc-ugc-ugc-cs95E872D0 { text-align: left; text-indent: 0pt;} .ugc-ugc-ugc-ugc-ugc-ugc-csA16174BA.ugc-ugc-ugc-ugc-ugc-ugc { color: #000000;} .ugc-ugc-ugc-ugc-ugc-ugc-cs5E98E930 { color: #000000; } .ugc-ugc-ugc-ugc-ugc-ugc-cs3FE84AE4 { color: #000000; }</style>';
+
+      var expected = '<style>.cs95E872D0 { text-align: left; \ntext-indent: 0pt; }.csA16174BA { color: #000000; }.cs5E98E930 { color: #000000; }.cs3FE84AE4 { color: #000000; }</style>';
+      revert(clean, options, function(err, res) {
+        expect(res).to.equal(expected);
+        done();
+      });
+    });
+
   });
 
 });
