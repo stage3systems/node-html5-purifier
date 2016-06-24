@@ -1,3 +1,8 @@
+v0.7.1 / 2016-06-24
+===================
+
+  * Fixed code bug which was concatenating all rule selectors recursively
+
 v0.7.0 / 2016-06-20
 ===================
 
