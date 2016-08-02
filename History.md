@@ -1,3 +1,8 @@
+v0.7.2 / 2016-08-02
+===================
+
+  * Fixed code bug which was removing table formatting css
+
 v0.7.1 / 2016-06-24
 ===================
 
