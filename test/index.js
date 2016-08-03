@@ -190,18 +190,6 @@ describe('library - html purifier', function() {
       });
     });
 
-    it('should parse style correctly', function(done) {
-      var options = { prefix: 'ugc-', postfix: 'ugc' };
-
-      var clean = '<style>.table{max-width:965px;font-size:12px;font-family:arial,helvetica;text-align:justify;border-collapse:collapse;border:1px solid black}.footer{font-size:12px;font-family:arial,helvetica;text-align:justify;border-collapse:collapse}.header{color:white;background:#00309B;font-family:arial,helvetica;font-weight:bold;text-align:center}.subheader{color:white;background:#00309B;font-family:arial,helvetica;text-align:center}.blankrow{height:6px;background-color:lightgray}.piccell{color:black;background-color:white;padding:0;text-align:left}.propcell{color:#00309B;background-color:white;white-space:nowrap;text-align:left;border:1px solid black;width:25%}.valcell{color:#00309B;background-color:white;white-space:nowrap;text-align:left;border:1px solid black;width:auto}.valcellgreen{color:#00309B;background-color:green;white-space:nowrap;text-align:left;border:1px solid black;width:25%}.valcellred{color:#00309B;background-color:red;white-space:nowrap;text-align:left;border:1px solid black;width:25%}.valcellorange{color:#00309B;background-color:orange;white-space:nowrap;text-align:left;border:1px solid black;width:25%}.relcellgreen{color:#00309B;background-color:green;white-space:nowrap;text-align:left;border:1px solid black;width:25%}.relcellred{color:#00309B;background-color:red;white-space:nowrap;text-align:left;border:1px solid black;width:25%}.relcellorange{color:#00309B;background-color:orange;white-space:nowrap;text-align:left;border:1px solid black;width:25%}</style>';
-
-      var expected = '<style>.table { max-width: 965px; \nfont-size: 12px; \nfont-family: arial,helvetica; \ntext-align: justify; \nborder-collapse: collapse; \nborder: 1px solid black; }.footer { font-size: 12px; \nfont-family: arial,helvetica; \ntext-align: justify; \nborder-collapse: collapse; }.header { color: white; \nbackground: #00309B; \nfont-family: arial,helvetica; \nfont-weight: bold; \ntext-align: center; }.subheader { color: white; \nbackground: #00309B; \nfont-family: arial,helvetica; \ntext-align: center; }.blankrow { height: 6px; \nbackground-color: lightgray; }.piccell { color: black; \nbackground-color: white; \npadding: 0; \ntext-align: left; }.propcell { color: #00309B; \nbackground-color: white; \nwhite-space: nowrap; \ntext-align: left; \nborder: 1px solid black; \nwidth: 25%; }.valcell { color: #00309B; \nbackground-color: white; \nwhite-space: nowrap; \ntext-align: left; \nborder: 1px solid black; \nwidth: auto; }.valcellgreen { color: #00309B; \nbackground-color: green; \nwhite-space: nowrap; \ntext-align: left; \nborder: 1px solid black; \nwidth: 25%; }.valcellred { color: #00309B; \nbackground-color: red; \nwhite-space: nowrap; \ntext-align: left; \nborder: 1px solid black; \nwidth: 25%; }.valcellorange { color: #00309B; \nbackground-color: orange; \nwhite-space: nowrap; \ntext-align: left; \nborder: 1px solid black; \nwidth: 25%; }.relcellgreen { color: #00309B; \nbackground-color: green; \nwhite-space: nowrap; \ntext-align: left; \nborder: 1px solid black; \nwidth: 25%; }.relcellred { color: #00309B; \nbackground-color: red; \nwhite-space: nowrap; \ntext-align: left; \nborder: 1px solid black; \nwidth: 25%; }.relcellorange { color: #00309B; \nbackground-color: orange; \nwhite-space: nowrap; \ntext-align: left; \nborder: 1px solid black; \nwidth: 25%; }</style>';
-      revert(clean, options, function(err, res) {
-        expect(res).to.equal(expected);
-        done();
-      });
-    });
-
   });
 
 });
