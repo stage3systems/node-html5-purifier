@@ -52,6 +52,7 @@ describe('library - html purifier', function() {
    * Tests for a 'RangeError: Maximum call stack size exceeded' exception, thrown by the
    * 'css' module that uses recursion when css tags are nested.
    */
+
   it('should discard nested selectors', function(done) {
     this.timeout(5000);
     var options = { prefix: 'abc', postfix: 'ugc' };
@@ -119,7 +120,7 @@ describe('library - html purifier', function() {
       var input = '<style>#xyz-link, #xyz-link2 #xyz-link3 #xyz-link4 #xyz-link5, p#xyz-test .abc{ margin-top:0; }</style><span class="abc xyz-hello">testing</span>';
       revert(input, options, function(err, res) {
         expect(err).to.not.be.an(Error);
-        expect(res).to.equal('<style>#link, #link2 #link3 #link4 #link5, p#test { margin-top: 0; }</style><span class="hello">testing</span>');
+        expect(res).to.equal('<style>#link,\n#link2 #link3 #link4 #link5,\np#test {\n  margin-top: 0;\n}</style><span class="hello">testing</span>');
         done();
       });
     });
@@ -183,7 +184,32 @@ describe('library - html purifier', function() {
 
       var clean = '<style>.ugc-ugc-ugc-ugc-ugc-ugc-cs95E872D0 { text-align: left; text-indent: 0pt;} .ugc-ugc-ugc-ugc-ugc-ugc-csA16174BA.ugc-ugc-ugc-ugc-ugc-ugc { color: #000000;} .ugc-ugc-ugc-ugc-ugc-ugc-cs5E98E930 { color: #000000; } .ugc-ugc-ugc-ugc-ugc-ugc-cs3FE84AE4 { color: #000000; }</style>';
 
-      var expected = '<style>.cs95E872D0 { text-align: left; \ntext-indent: 0pt; }.csA16174BA { color: #000000; }.cs5E98E930 { color: #000000; }.cs3FE84AE4 { color: #000000; }</style>';
+      var expected = '<style>.cs95E872D0 {\n  text-align: left;\n  text-indent: 0pt;\n}\n\n.csA16174BA {\n  color: #000000;\n}\n\n.cs5E98E930 {\n  color: #000000;\n}\n\n.cs3FE84AE4 {\n  color: #000000;\n}</style>';
+      revert(clean, options, function(err, res) {
+        expect(res).to.equal(expected);
+        done();
+      });
+    });
+
+    it('should parse style correctly', function(done) {
+      var options = { prefix: 'ugc-', postfix: 'ugc' };
+
+      var clean = '<style>.table{max-width:965px;font-size:12px;font-family:arial,helvetica;text-align:justify;border-collapse:collapse;border:1px solid black}.footer{font-size:12px;font-family:arial,helvetica;text-align:justify;border-collapse:collapse}.header{color:white;background:#00309B;font-family:arial,helvetica;font-weight:bold;text-align:center}.subheader{color:white;background:#00309B;font-family:arial,helvetica;text-align:center}.blankrow{height:6px;background-color:lightgray}.piccell{color:black;background-color:white;padding:0;text-align:left}.propcell{color:#00309B;background-color:white;white-space:nowrap;text-align:left;border:1px solid black;width:25%}.valcell{color:#00309B;background-color:white;white-space:nowrap;text-align:left;border:1px solid black;width:auto}.valcellgreen{color:#00309B;background-color:green;white-space:nowrap;text-align:left;border:1px solid black;width:25%}.valcellred{color:#00309B;background-color:red;white-space:nowrap;text-align:left;border:1px solid black;width:25%}.valcellorange{color:#00309B;background-color:orange;white-space:nowrap;text-align:left;border:1px solid black;width:25%}.relcellgreen{color:#00309B;background-color:green;white-space:nowrap;text-align:left;border:1px solid black;width:25%}.relcellred{color:#00309B;background-color:red;white-space:nowrap;text-align:left;border:1px solid black;width:25%}.relcellorange{color:#00309B;background-color:orange;white-space:nowrap;text-align:left;border:1px solid black;width:25%}</style>';
+
+      var expected = '<style>.table {\n  max-width: 965px;\n  font-size: 12px;\n  font-family: arial,helvetica;\n  text-align: justify;\n  border-collapse: collapse;\n  border: 1px solid black;\n}\n\n.footer {\n  font-size: 12px;\n  font-family: arial,helvetica;\n  text-align: justify;\n  border-collapse: collapse;\n}\n\n.header {\n  color: white;\n  background: #00309B;\n  font-family: arial,helvetica;\n  font-weight: bold;\n  text-align: center;\n}\n\n.subheader {\n  color: white;\n  background: #00309B;\n  font-family: arial,helvetica;\n  text-align: center;\n}\n\n.blankrow {\n  height: 6px;\n  background-color: lightgray;\n}\n\n.piccell {\n  color: black;\n  background-color: white;\n  padding: 0;\n  text-align: left;\n}\n\n.propcell {\n  color: #00309B;\n  background-color: white;\n  white-space: nowrap;\n  text-align: left;\n  border: 1px solid black;\n  width: 25%;\n}\n\n.valcell {\n  color: #00309B;\n  background-color: white;\n  white-space: nowrap;\n  text-align: left;\n  border: 1px solid black;\n  width: auto;\n}\n\n.valcellgreen {\n  color: #00309B;\n  background-color: green;\n  white-space: nowrap;\n  text-align: left;\n  border: 1px solid black;\n  width: 25%;\n}\n\n.valcellred {\n  color: #00309B;\n  background-color: red;\n  white-space: nowrap;\n  text-align: left;\n  border: 1px solid black;\n  width: 25%;\n}\n\n.valcellorange {\n  color: #00309B;\n  background-color: orange;\n  white-space: nowrap;\n  text-align: left;\n  border: 1px solid black;\n  width: 25%;\n}\n\n.relcellgreen {\n  color: #00309B;\n  background-color: green;\n  white-space: nowrap;\n  text-align: left;\n  border: 1px solid black;\n  width: 25%;\n}\n\n.relcellred {\n  color: #00309B;\n  background-color: red;\n  white-space: nowrap;\n  text-align: left;\n  border: 1px solid black;\n  width: 25%;\n}\n\n.relcellorange {\n  color: #00309B;\n  background-color: orange;\n  white-space: nowrap;\n  text-align: left;\n  border: 1px solid black;\n  width: 25%;\n}</style>';
+      revert(clean, options, function(err, res) {
+        expect(res).to.equal(expected);
+        done();
+      });
+    });
+
+    it('should parse style correctly when there are comments in style', function(done) {
+      var options = { prefix: 'ugc-', postfix: 'ugc' };
+
+      var clean = '<style><!--/* Font Definitions */@font-face {font-family:SimSun; panose-1:2 1 6 0 3 1 1 1 1 1;} @font-face {font-family:SimSun; panose-1:2 1 6 0 3 1 1 1 1 1;}/* Style Definitions */ p.ugc-MsoNormal, li.MsoNormal, div.ugc{margin:0in;margin-bottom:.0001pt; \font-size:11.0pt;font-family:"Calibri","serif";} </style>';
+
+      var expected = '<style>/* Font Definitions */\n\n@font-face {\n  font-family: SimSun;\n  panose-1: 2 1 6 0 3 1 1 1 1 1;\n}\n\n@font-face {\n  font-family: SimSun;\n  panose-1: 2 1 6 0 3 1 1 1 1 1;\n}\n\n/* Style Definitions */\n\np.MsoNormal,\nli.MsoNormal,\ndiv {\n  margin: 0in;\n  margin-bottom: .0001pt;\n  ont-size: 11.0pt;\n  font-family: "Calibri","serif";\n}</style>';
+
       revert(clean, options, function(err, res) {
         expect(res).to.equal(expected);
         done();
