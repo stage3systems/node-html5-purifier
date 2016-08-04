@@ -12,10 +12,9 @@ describe('library - html purifier - style parser - sanitizer', function() {
 
   describe('sanitize()', function() {
     it('should remove title tags', function(done) {
-      var requireStyleTags = true;
       var dirty = '<title>hello world</title>';
 
-      sanitizer.sanitize(dirty, requireStyleTags, function(err, sanitized) {
+      sanitizer.sanitize(dirty, function(err, sanitized) {
         expect(err).to.be.equal(null);
         expect(sanitized).to.be.equal('');
         done();
@@ -23,12 +22,11 @@ describe('library - html purifier - style parser - sanitizer', function() {
     });
 
     it('should add style tags', function(done) {
-      var requireStyleTags = true;
       var dirty = '<style class="someHack">body { background: #fff }</style>';
 
-      sanitizer.sanitize(dirty, requireStyleTags, function(err, sanitized) {
+      sanitizer.sanitize(dirty, function(err, sanitized) {
         expect(err).to.be.equal(null);
-        expect(sanitized).to.be.equal('<style>body {\n  background: #fff;\n}</style>');
+        expect(sanitized).to.be.equal('body {\n  background: #fff;\n}');
         done();
       });
     });
