@@ -29,7 +29,7 @@ describe('library - html purifier', function() {
 
   it('should not require any options', function(done) {
     var options = {};
-    var input = '<span class="hello">testing</span>';
+    var input = '<style>body {\n  background-color: blue;\n}</style><span class="hello">testing</span>';
     purify(input, options, function(err, res) {
       expect(err).to.not.be.an(Error);
       expect(res).to.equal(input);
