@@ -1,3 +1,9 @@
+v0.8.0 / 2016-08-18
+===================
+
+  * Fixed style parser to parse complex styles correctly
+
+
 v0.7.1 / 2016-06-24
 ===================
 
