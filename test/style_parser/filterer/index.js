@@ -88,5 +88,17 @@ describe('library - html purifier - style parser - filterer', function() {
         done();
       });
     });
+
+    it('should strip invalid css and keep valid css', function(done) {
+      // remove invalid css keep valid css
+      var dirty = 'a { font-size: 16px; } { !important; } p { font-size: 12px !important; }';
+      var clean = 'a {\n  font-size: 16px;\n}';
+
+      filterer.filter(dirty, function(err, sanitized) {
+        expect(err).to.be.equal(null);
+        expect(sanitized).to.be.equal(clean);
+        done();
+      });
+    });
   });
 });
