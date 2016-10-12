@@ -1,3 +1,9 @@
+v0.8.1 / 2016-10-12
+===================
+
+  * Fixed filterer to remove only invalid styles instead of removing complete css
+
+
 v0.8.0 / 2016-08-18
 ===================
 
