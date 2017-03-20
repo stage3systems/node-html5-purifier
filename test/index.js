@@ -37,6 +37,17 @@ describe('library - html purifier', function() {
     });
   });
 
+  it('should add prefix and postfix to all classes', function(done) {
+    var options = { prefix: 'ugc-', postfix: 'ugc' };
+    var input = '<style>td {\n  background-color: blue;\n}.xl123 {color: blue} </style><span class="hello">testing</span>';
+    var res = '<style>td.ugc {\n  background-color: blue;\n}\n\n.ugc-xl123.ugc {\n  color: blue;\n}</style><span class="ugc ugc-hello">testing</span>';
+    purify(input, options, function(err, res) {
+      expect(err).to.not.be.an(Error);
+      expect(res).to.equal(res);
+      done();
+    });
+  });
+
   it('should handle undefined input', function(done) {
     var options = { prefix: 'abc', postfix: 'ugc' };
     purify(undefined, options, function(err, res) {

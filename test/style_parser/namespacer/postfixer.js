@@ -20,7 +20,7 @@ describe('lib - html purifier - style parser - namespacer - postfixer', function
 
     it('should postfix tag', function(done) {
       var dirty = 'a { color:#0000FF; }';
-      var clean = 'a.ugc { color:#0000FF; }';
+      var clean = 'a.ugc {\n  color: #0000FF;\n}';
 
       postfixer.append(dirty, POSTFIX, function(err, postfixed) {
         expect(postfixed).to.equal(clean);
@@ -30,7 +30,17 @@ describe('lib - html purifier - style parser - namespacer - postfixer', function
 
     it('should postfix tag with pseudo-class', function(done) {
       var dirty = 'a:link { color:#0000FF; }';
-      var clean = 'a.ugc:link { color:#0000FF; }';
+      var clean = 'a.ugc:link {\n  color: #0000FF;\n}';
+
+      postfixer.append(dirty, POSTFIX, function(err, postfixed) {
+        expect(postfixed).to.equal(clean);
+        done();
+      });
+    });
+
+    it('should postfix tag to any class', function(done) {
+      var dirty = '.xl123 { color:#0000FF; }';
+      var clean = '.xl123.ugc {\n  color: #0000FF;\n}';
 
       postfixer.append(dirty, POSTFIX, function(err, postfixed) {
         expect(postfixed).to.equal(clean);
@@ -40,7 +50,7 @@ describe('lib - html purifier - style parser - namespacer - postfixer', function
 
     it('should postfix tag with pseudo-class', function(done) {
       var dirty = 'a , p { color:#0000FF; }';
-      var clean = 'a.ugc , p.ugc { color:#0000FF; }';
+      var clean = 'a.ugc,\np.ugc {\n  color: #0000FF;\n}';
 
       postfixer.append(dirty, POSTFIX, function(err, postfixed) {
         expect(postfixed).to.equal(clean);
