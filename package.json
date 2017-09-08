@@ -29,7 +29,7 @@
   "dependencies": {
     "async": "1.5.2",
     "css": "2.2.1",
-    "google-caja-sanitizer": "git+ssh://git@github.com:stage3systems/google-caja-sanitizer#v1.1.0",
+    "google-caja-sanitizer": "git+ssh://git@github.com:stage3systems/google-caja-sanitizer#features/SED-2396",
     "underscore": "1.8.3"
   },
   "devDependencies": {
