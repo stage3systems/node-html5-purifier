@@ -3,7 +3,7 @@ var postfixer = require(APP_DIR + '/lib/style_parser/namespacer/postfixer.js');
 /**
  * HTML Purifier Style Parser Namespacer Postfixer
  */
-describe('lib - html purifier - style parser - namespacer - postfixer', function() {
+describe.only('lib - html purifier - style parser - namespacer - postfixer', function() {
 
   it('should contain the postfix function', function() {
     var hasAppendFunction = (typeof(postfixer.append) !== 'undefined');
@@ -105,6 +105,26 @@ describe('lib - html purifier - style parser - namespacer - postfixer', function
       });
     });
 
+    it('should not strip postfix tag if there is no other classname content', function(done) {
+        var input = '.Default_Paragraph_Font{text-indent:0.00in;text-align:left;vertical-align:top;}\n'
+            + '.ugc{text-indent:0.00in;text-align:left;vertical-align:top;font-size:12.00\n'
+            + 'pt;mso-style-next:\'ugc\';margin:0.07in 0.00in;}\n'
+            + '.ugc1{text-indent:0.00in;text-align:left;vertical-align:top;font-size:10.0\n'
+            + '0pt;margin:0.00in;}'
+        ;
+        var expected = '.Default_Paragraph_Font {\n  text-indent: 0.00in;\n  text-align: left;\n  '
+            + 'vertical-align: top;\n}\n\n'
+            + '.ugc {\n  text-indent: 0.00in;\n  text-align: left;\n  vertical-align: top;\n  font-size: 12.00'
+            + '\npt;\n  mso-style-next: \'ugc\';\n  margin: 0.07in 0.00in;\n}\n\n'
+            + '1 {\n  text-indent: 0.00in;\n  text-align: left;\n  vertical-align: top;\n  font-size: 10.0'
+            + '\n0pt;\n  margin: 0.00in;\n}'
+        ;
+
+        postfixer.strip(input, POSTFIX, function(err, stripped) {
+            expect(stripped).to.equal(expected);
+            done();
+        });
+    });
   });
 
 });
