@@ -3,7 +3,7 @@ var postfixer = require(APP_DIR + '/lib/style_parser/namespacer/postfixer.js');
 /**
  * HTML Purifier Style Parser Namespacer Postfixer
  */
-describe.only('lib - html purifier - style parser - namespacer - postfixer', function() {
+describe('lib - html purifier - style parser - namespacer - postfixer', function() {
 
   it('should contain the postfix function', function() {
     var hasAppendFunction = (typeof(postfixer.append) !== 'undefined');
